@@ -12,6 +12,10 @@ inputs:
     description: 'The path where the pitest reports are generated'
     required: false
     default: "build/reports/pitest"
+  reports-name:
+    description: 'The name of the uploaded artifact'
+    required: false
+    default: "reports-artifact"
   working-directory:
     description: 'The directory where gradle can be executed'
     required: false
@@ -43,7 +47,7 @@ runs:
     - name: Upload report
       uses: actions/upload-artifact@v2
       with:
-        name: reports-artifact
+        name: ${{ inputs.reports-name }}
         path: ${{ inputs.reports-path }}
         retention-days: ${{ inputs.reports-retention }}
 
